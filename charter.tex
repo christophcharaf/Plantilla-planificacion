@@ -25,12 +25,12 @@
 \pertenenciaCoDirector{FIUBA}
 
 % Nombre del cliente, quien va a aprobar los resultados del proyecto, se puede usar con el comando \clientename y \empclientename
-\cliente{Nombre del cliente}
-\empresaCliente{Empresa del cliente}
+\cliente{Kaltura Inc.}
+\empresaCliente{Kaltura Inc.}
  
 \fechaINICIO{24 de junio de 2025}		%Fecha de inicio de la cursada de GdP \fechaInicioName
 \fechaFINALPlan{19 de agosto de 2025} 	%Fecha de final de cursada de GdP
-\fechaFINALTrabajo{15 de diciembre de 2024}	%Fecha de defensa pública del trabajo final
+\fechaFINALTrabajo{15 de diciembre de 2025}	%Fecha de defensa pública del trabajo final
 
 
 \begin{document}
@@ -106,53 +106,41 @@ Se adjunta a esta acta la planificación inicial.
 \section{1. Descripción técnica-conceptual del proyecto a realizar}
 \label{sec:descripcion}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-El objetivo es que el lector, en una o dos páginas, exponga de qué se trata el proyecto y cuáles son sus desafíos, cuál es la motivación para realizarlo y su importancia.
+El presente proyecto tiene como objetivo desarrollar un sistema de detección de anomalías en tiempo real aplicado a un servicio de televisión por protocolo de Internet (TV-over-IP) basado en interfaces de programación de aplicaciones (API). Este servicio es monitoreado mediante métricas recolectadas a través de Prometheus, con una frecuencia de muestreo de 30 segundos. El sistema propuesto busca identificar comportamientos inusuales o fallos en el servicio mediante la reconstrucción de secuencias de métricas utilizando un modelo Autoencoder basado en redes neuronales de memoria a largo y corto plazo (LSTM, por sus siglas en inglés: \textit{Long Short-Term Memory}).
 
-Se debe introducir el contexto del proyecto, el estado del arte en la temática, describir la propuesta de valor, cuál es el problema que atiende y cuál es la solución que se propone. Se debe dar una descripción funcional de la solución que incluya un diagrama en bloques.
+Dicho esto, el cliente se trata de una empresa llamada "Kaltura Inc.", la cual provee servicios de TV-over-IP sobre infraestructura en la nube de Amazon Web Services (AWS). Esta empresa se enfrenta al desafío creciente de modernizar sus herramientas de monitoreo para mejorar la capacidad de reacción ante fallos en producción, sin depender exclusivamente de soluciones externas. Por este motivo, este desarrollo responde a una necesidad concreta del área de operaciones y calidad de servicio de la organización frente a sus clientes.
 
-Puede ser útil incluir en esta sección la respuesta a alguna de estas preguntas:
+Actualmente, los métodos tradicionales de monitoreo utilizan umbrales fijos o alertas manuales, lo cual resulta ineficiente frente a comportamientos no triviales o patrones de uso dinámicos. Además, muchas herramientas de monitoreo de terceros requieren la exposición de métricas internas a servicios externos, comprometiendo  la privacidad de los datos o aumentando la propensión a ataques. En contraste, este proyecto propone una solución propietaria, basada en aprendizaje automático, que permita detectar anomalías de manera autónoma, no invasiva y segura.
 
-\begin{itemize}
-	\item ¿Cuál es el contexto del proyecto, es un emprendimiento personal, un proyecto para una empresa, es parte del programa de vinculación con empresas del posgrado?
-	\item ¿Existen o aplican condiciones especiales al proyecto, financiamiento de algún programa público o privado, acuerdos de confidencialidad, acuerdos sobre la propiedad intelectual de los entregables u otros?
-	\item ¿Cómo se compara la solución propuesta con el estado del arte en el campo de aplicación? ¿En qué aspectos destaca?
-	\item ¿Ayuda a la explicación si se incluye un lienzo Canvas del Modelo de Negocio?
-	\item ¿En qué estado del ciclo de vida está la solución que se propone?
-	\item ¿Cuáles son las características del cliente (el adoptante de los entregables del proyecto) qué valora, qué necesita?
-	\item ¿Por dónde pasa la innovación?
-\end{itemize}
+Desde el punto de vista técnico, el modelo recibirá como entrada ventanas deslizantes de tiempo compuestas por un número a definir de métricas técnicas que reflejan el rendimiento del servicio en tiempo real. Se utilizarán técnicas de ingeniería de características (\textit{feature engineering}) como la codificación cíclica del horario y variables contextuales que representen ventanas de mantenimiento y fines de semana para mejorar la sensibilidad del modelo frente a patrones estacionales.
 
-La descripción técnica-conceptual \textbf{debe incluir al menos un diagrama en bloques del sistema} y descripción funcional de la solución propuesta.
+Se empleará una arquitectura LSTM Autoencoder que aprende a reconstruir secuencias temporales multivariadas. Si el error de reconstrucción del mismo excede un umbral previamente definido, se considera que ocurrió una anomalía. En caso de detección, se emitirán alertas automáticas a través de la plataforma de alertas Opsgenie y se generarán enlaces a paneles de visualización de métricas como Grafana con el contexto temporal de la anomalía.
 
-Las figuras se deben mencionar en el texto ANTES de que aparezcan con una frase como la siguiente: ``En la figura \ref{fig:diagBloques} se presenta el diagrama en bloques del sistema. Se observa que...''.  La regla es que las figuras nunca pueden ir antes de ser mencionadas en el texto, porque sino el lector no entiende por qué de pronto aparece una figura.
+Esta propuesta se encuentra actualmente en su etapa inicial de planeamiento, donde se están definiendo tanto la arquitectura del modelo como las herramientas de integración con el ecosistema de monitoreo ya existente. La innovación principal reside en la aplicación de redes neuronales recurrentes para detección de anomalías directamente dentro del entorno técnico de la empresa, sin depender de soluciones comerciales de terceros. Esto refuerza la privacidad de los datos sensibles del sistema y de los usuarios, y permite una mayor adaptabilidad a los cambios en el comportamiento del servicio.
+
+En comparación con el estado del arte, esta solución se destaca por su enfoque específico a servicios basados en API en tiempo real, su integración directa con herramientas de acumulación de métricas Prometheus y Grafana y por aplicar técnicas avanzadas de aprendizaje profundo en lugar de reglas estáticas. Esto la convierte en una alternativa más precisa, segura, escalable y personalizada.
+
+Cabe mencionar que no existen fuentes de financiamiento externo ni convenios públicos involucrados. El proyecto se desarrolla como parte del trabajo profesional del autor, y de acuerdo con el contrato vigente con la empresa, la propiedad intelectual de todos los entregables pertenece a la organización.
+
+El cliente interno de este desarrollo es el área de operaciones de la empresa, que valora especialmente la capacidad de detección proactiva de incidentes, la integración fluida con su infraestructura existente y la reducción de falsos positivos. Necesita una solución confiable, sustentable y alineada con sus políticas de seguridad.
+
+En la figura 1 se presenta el diagrama en bloques del sistema. Se observa que el flujo de datos comienza con la recolección de métricas desde Prometheus a través de su API, las cuales se almacenan en un marco de datos (\textit{dataframe}) y luego se someten a un proceso de preprocesamiento e ingeniería de características. A continuación, estas métricas son introducidas en un modelo Autoencoder basado en redes LSTM, compuesto por un codificador (\textit{encoder}) y un decodificador (\textit{decoder}), que tiene como objetivo reconstruir la secuencia original de datos. El sistema evalúa el error de reconstrucción de dichas métricas y lo compara contra un umbral definido: si el error excede dicho umbral, se considera que ocurrió una anomalía. En ese caso, se dispara una alerta automática hacia Opsgenie y se genera un enlace contextual hacia un panel de visualización en Grafana, lo que permite al equipo de operaciones inspeccionar el evento detectado con información visual en tiempo real. 
+
+Si no se detecta anomalía, el sistema continúa procesando los siguientes datos de forma continua y en tiempo real. 
+
+ 
 
 \begin{figure}[htpb]
 \centering 
-\includegraphics[width=.65\textwidth]{./Figuras/diagBloques.png}
+\includegraphics[width=.65\textwidth]{./Figuras/diag.png}
 \caption{Diagrama en bloques del sistema.}
 \label{fig:diagBloques}
 \end{figure}
 
 \vspace{25px}
 
-El tamaño del texto en TODAS las figuras debe ser adecuado \textbf{para que NO pase lo que ocurre en la figura \ref{fig:diagBloques}}, donde el lector debe esforzarse para poder leer el texto. 
-
-Los colores usados en el diagrama deben ser adecuados, tal que ayuden a comprender mejor el diagrama. Se recomienda evitar colores primarios (como rojo, verde o cyan) y usar la gama de colores pastel.
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-
 \section{2. Identificación y análisis de los interesados}
 \label{sec:interesados}
-
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-\textbf{Nota importante:} borrar esto y todas las consignas en color rojo antes de entregar este documento). Esto se hace eliminando el par de comandos que forman el bloque consigna, \verb!\begin{consigna}{red}! y \verb!\end{consigna}{red}! del código. 
- 
-Es inusual que una misma persona esté en más de un rol, incluso en proyectos chicos. Si se considera que una persona cumple dos o más roles, entonces \textbf{solo dejarla en el rol más importante}. 
-
-Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla solo como Cliente. Si una persona es el Responsable, \textbf{no debe ser colocado también como miembro del equipo}.
-
-
 \begin{table}[ht]
 %\caption{Identificación de los interesados}
 %\label{tab:interesados}
@@ -160,90 +148,70 @@ Por ejemplo, si una persona es Cliente pero también colabora u orienta, dejarla
 \hline
 \rowcolor[HTML]{C0C0C0} 
 Rol           & Nombre y Apellido & Organización 	& Puesto 	\\ \hline
-Auspiciante   &                   &              	&        	\\ \hline
-Cliente       & \clientename      &\empclientename	&        	\\ \hline
-Impulsor      &                   &              	&        	\\ \hline
+Auspiciante   &           \clientename        &  \clientename             	&      Departamento de soporte y operaciones 	\\ \hline
 Responsable   & \authorname       & FIUBA        	& Alumno 	\\ \hline
-Colaboradores &                   &              	&        	\\ \hline
 Orientador    & \supname	      & \pertesupname 	& Director del Trabajo Final \\ \hline
-Equipo        & miembro1 \newline 
-				miembro2          &              	&        	\\ \hline
-Opositores    &                   &              	&        	\\ \hline
-Usuario final &                   &              	&        	\\ \hline
+Usuario final &       \clientename            &         \clientename     	&   Departamento de soporte y operaciones     	\\ \hline
 \end{tabularx}
 \end{table}
 
-El Director suele ser uno de los orientadores.
 
-No dejar celdas vacías; si no hay nada que poner en una celda colocar un signo ``-''.
-
-No dejar filas vacías; si no hay nada que poner en una fila entonces eliminarla.
-
-Es deseable listar a continuación las principales características de cada interesado.
- 
-Por ejemplo:
 \begin{itemize}
-	\item Orientador: la Dra. Ing. María Gómez es experta en la temática y va a ayudar con la definición de los requerimientos y el desarrollo del firmware del embebido.
-	\item Auspiciante: es riguroso y exigente con la rendición de gastos. Tener mucho cuidado con esto.
-	\item Equipo: Juan Perez, suele pedir licencia porque tiene un familiar con una enfermedad. Planificar considerando esto.
+	\item Orientador: a definir.
+	\item Auspiciante: será el mismo usuario final de la solución, valora costos y organización en los procesos automatizados. 
 \end{itemize}
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 
 \section{3. Propósito del proyecto}
 \label{sec:proposito}
-
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-
-¿Por qué se hace el proyecto? ¿Qué se quiere lograr? 
-
-Se recomienda que sea solo un párrafo que continúe con la idea de la frase ``el propósito de este proyecto es...'' (omitir la frase, ya que está en el título de la sección).
-\end{consigna}
+Diseñar e implementar un sistema inteligente que permita detectar anomalías en tiempo real dentro de un servicio de televisión por protocolo de \textit{Internet} (TV-over-IP), basado en APIs y desplegado sobre infraestructura en la nube. Mediante el uso de un modelo \textit{autoencoder} basado en redes neuronales LSTM, se busca brindar a la empresa una herramienta robusta y segura para el monitoreo continuo de métricas técnicas clave, mejorando su capacidad de respuesta ante incidentes, minimizando el tiempo de inactividad del servicio y garantizando una mayor calidad de experiencia para sus usuarios finales. 
 
 \section{4. Alcance del proyecto}
 \label{sec:alcance}
 
-\begin{consigna}{red}
-¿Qué se incluye y que no se incluye en este proyecto?
-
-Se refiere al trabajo que se va a hacer para entregar el producto o resultado especificado. 
-
-Explicitar todo lo quede comprendido dentro del alcance del proyecto. Por ejemplo:
-
-El proyecto incluye:
+El proyecto \textbf{incluye}:
 \begin{itemize}
-	\item Ítem 1.
-	\item Ítem 2.
-		\begin{itemize}
-		\item Subítem 1.
-		\item Subítem 2.
-		\item ...
-		\end{itemize}
-	\item ...
-	
+    \item La definición y análisis de métricas críticas del servicio de TV-over-IP recolectadas desde Prometheus mediante su API.
+    \item El diseño e implementación de una serie de procesos(\textit{pipeline}) de procesamiento de datos, incluyendo:
+    \begin{itemize}
+        \item Normalización de variables.
+        \item \textit{Feature engineering} (codificación cíclica de hora, día, etc.).
+        \item Construcción de ventanas deslizantes para series temporales.
+    \end{itemize}
+    \item El desarrollo de un modelo de detección de anomalías basado en Autoencoder LSTM, entrenado para reconstruir secuencias multivariadas normales.
+    \item La integración del sistema con herramientas de monitoreo existentes:
+    \begin{itemize}
+        \item Generación de alertas automáticas vía Opsgenie.
+        \item Enlace contextual a paneles de Grafana.
+    \end{itemize}
+    \item La validación del sistema en un entorno de producción con datos reales históricos.
+    \item La elaboración de documentación técnica y funcional del prototipo.
+\end{itemize}
+El presente proyecto \textbf{no incluye}:
+
+\begin{itemize}
+    \item El desarrollo de interfaces gráficas adicionales fuera de Grafana.
+    \item La implementación de acciones correctivas automáticas posteriores a la detección de anomalías.
+    \item La gestión directa de recursos en AWS ni tareas de infraestructura subyacente (como escalado automático, balanceo de carga, etc.).
 \end{itemize}
 
-Explicitar además todo lo que no quede incluido (``El presente proyecto no incluye...'')
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 
 \section{5. Supuestos del proyecto}
 \label{sec:supuestos}
 
-\begin{consigna}{red} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
-``Para el desarrollo del presente proyecto se supone que: ...''
+Para el desarrollo del presente proyecto se supone que:
 
-\begin{itemize}
-	\item Supuesto 1.
-	\item Supuesto 2.
-	\item ...
-\end{itemize}
+\begin{enumerate}
+    \item \clientename  brindará acceso a las métricas necesarias a través de su instancia de Prometheus mediante API REST, así como también a sus paneles de visualización en Grafana.
+    \item El \textit{dataframe} histórico utilizado para entrenamiento estará disponible, completo y será representativo del comportamiento normal del sistema en condiciones reales de operación.
+    \item Se contará con los recursos computacionales necesarios (por ejemplo, GPU opcional) para el entrenamiento del modelo LSTM Autoencoder en un entorno controlado por \clientename.
+    \item Las herramientas de integración como Opsgenie y Grafana ya están operativas y disponibles para pruebas dentro de la infraestructura de la empresa.
+    \item No se producirán cambios drásticos en el comportamiento del servicio durante el período de entrenamiento y validación que comprometan la utilidad del modelo.
+    \item El equipo de operaciones colaborará en la validación funcional del sistema, especialmente en la evaluación de falsos positivos y en el ajuste del umbral de alerta en base a estándares existentes en la empresa.
+    \item Las condiciones legales, de seguridad y de confidencialidad establecidas en el contrato del autor con la empresa se mantendrán vigentes y permitirán el desarrollo del proyecto sin restricciones externas.
+\end{enumerate}
 
-Por ejemplo, se podrían incluir supuestos respecto a disponibilidad de tiempo y recursos humanos y materiales, sobre la factibilidad técnica de distintos aspectos del proyecto, sobre otras cuestiones que sean necesarias para el éxito del proyecto como condiciones macroeconómicas o reglamentarias.
-
-\end{consigna} % ELIMINAR \begin{consigna}{red} y \end{consigna}{red} en las secciones que vayan completando para cada entrega parcial.
 
 \section{6. Requerimientos}
 \label{sec:requerimientos}
