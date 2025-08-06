@@ -392,8 +392,7 @@ Entregable requerido por la carrera de especialización que resume el estado del
 \centering
 \begin{tabular}{|>{\centering\arraybackslash}p{0.17\linewidth}|>{\raggedright\arraybackslash}p{0.33\linewidth}|>{\raggedright\arraybackslash}p{0.5\linewidth}|}
 \hline
-\rowcolor[HTML]{EFEFEF}
-\textbf{Color} & \textbf{Grupo de tareas} & \textbf{Descripción} \\ \hline
+\rowcolor[HTML]{C0C0C0} \textbf{Color}& \textbf{Grupo de tareas} & \textbf{Descripción} \\ \hline
 
 \cellcolor[HTML]{FFF2CC} Amarillo claro & Grupo 1: análisis y definición del sistema& Tareas relacionadas con el estudio preliminar, análisis de métricas, requisitos y diseño inicial. \\ \hline
 
@@ -423,7 +422,7 @@ Entregable requerido por la carrera de especialización que resume el estado del
 
 \section{11. Diagrama de Gantt}
 \label{sec:gantt}
-A continuación se presenta el diagrama de Gantt correspondiente al cronograma del proyecto. El mismo se muestra en formato apaisado con el objetivo de facilitar su lectura y visualización el cual permite apreciar con claridad la secuencia temporal de las actividades planificadas, su duración estimada y su relación con el resto de las tareas. Este diagrama fue elaborado en base al desglose de tareas definido en el WBS (punto 9) y refleja la distribución efectiva del trabajo a lo largo del tiempo, considerando una carga de 6 horas diarias, días no laborables y períodos de vacaciones. 
+A continuación se presenta el diagrama de Gantt correspondiente al cronograma del proyecto. El mismo se muestra en formato apaisado con el objetivo de facilitar su lectura y visualización, y permite apreciar con claridad la secuencia temporal de las actividades planificadas, su duración estimada y su relación con el resto de las tareas. Este diagrama fue elaborado en base al desglose de tareas definido en el WBS (punto 9) y refleja la distribución efectiva del trabajo a lo largo del tiempo, considerando una carga de 6 horas diarias, días no laborables y períodos de vacaciones. 
 \begin{landscape}
 \begin{figure}[H]
 \centering
@@ -443,7 +442,7 @@ A continuación se presenta el diagrama de Gantt correspondiente al cronograma d
 \centering
 \begin{tabular}{|>{\raggedright\arraybackslash}p{0.25\linewidth}|>{\centering\arraybackslash}p{0.25\linewidth}|>{\centering\arraybackslash}p{0.25\linewidth}|>{\centering\arraybackslash}p{0.25\linewidth}|}
 \hline
-\textbf{Descripción} & \textbf{Cantidad (h)} & \textbf{Valor unitario (ARS)} & \textbf{Valor total (ARS)} \\
+\rowcolor[HTML]{C0C0C0} \textbf{Descripción}& \textbf{Cantidad (h)} & \textbf{Valor unitario (ARS)} & \textbf{Valor total (ARS)} \\
 \hline
 Análisis y definición del sistema & 70 & 2.250 & 157.500 \\\hline
 Desarrollo del pipeline de datos  & 95 & 2.250 & 213.750 \\\hline
@@ -463,7 +462,7 @@ Validación, documentación y entregables & 120 & 2.250 & 270.000 \\
 \centering
 \begin{tabular}{|>{\raggedright\arraybackslash}p{0.25\linewidth}|>{\centering\arraybackslash}p{0.25\linewidth}|>{\centering\arraybackslash}p{0.25\linewidth}|>{\centering\arraybackslash}p{0.25\linewidth}|}
 \hline
-\textbf{Descripción} & \textbf{Cantidad} & \textbf{Valor unitario (ARS)} & \textbf{Valor total (ARS)} \\
+\rowcolor[HTML]{C0C0C0} \textbf{Descripción}& \textbf{Cantidad} & \textbf{Valor unitario (ARS)} & \textbf{Valor total (ARS)} \\
 \hline
 Electricidad y conectividad (mensual estimado) & 3 meses & 15.000 & 45.000 \\\hline
 Licencias de software y servicios en la nube (AWS) & 1 uso & 25.000 & 25.000 \\
@@ -488,27 +487,27 @@ Licencias de software y servicios en la nube (AWS) & 1 uso & 25.000 & 25.000 \\
 
 \subsection*{a) Identificación de los riesgos}
 
-Riesgo 1: Retrasos por disponibilidad limitada de recursos computacionales en AWS \\
+Riesgo 1: retrasos por disponibilidad limitada de recursos computacionales en AWS \\
 Severidad (S): 8. Puede impactar directamente el entrenamiento del modelo y postergar hitos clave. \\
 Ocurrencia (O): 6. Es posible durante el uso compartido de cuentas gratuitas o cuotas restringidas en nube.
 
 \vspace{0.2cm}
-Riesgo 2: Baja calidad o inconsistencias en los datos históricos \\
+Riesgo 2: baja calidad o inconsistencias en los datos históricos \\
 Severidad (S): 7. Afectaría la capacidad de generalización del modelo y su precisión. \\
 Ocurrencia (O): 5. Dado que Prometheus no garantiza calidad semántica, existe una probabilidad media.
 
 \vspace{0.2cm}
-Riesgo 3: Alta tasa de falsos positivos en producción \\
+Riesgo 3: alta tasa de falsos positivos en producción \\
 Severidad (S): 9. Daña la confiabilidad del sistema y satura al equipo de operaciones. \\
 Ocurrencia (O): 4. Aunque el modelo será entrenado cuidadosamente, es una posibilidad al inicio.
 
 \vspace{0.2cm}
-Riesgo 4: Retrasos en la integración con herramientas externas (Grafana / Opsgenie) \\
+Riesgo 4: retrasos en la integración con herramientas externas (Grafana / Opsgenie) \\
 Severidad (S): 6. Afecta el valor operativo del sistema si no puede emitir alertas. \\
 Ocurrencia (O): 5. Existen APIs documentadas, pero pueden surgir problemas de permisos o conectividad.
 
 \vspace{0.2cm}
-Riesgo 5: Reentrenamiento frecuente por cambios en el comportamiento del servicio \\
+Riesgo 5: re-entrenamiento frecuente por cambios en el comportamiento del servicio \\
 Severidad (S): 5. Implica tareas adicionales no previstas si el modelo no se adapta. \\
 Ocurrencia (O): 6. Dado que el tráfico de usuarios puede ser estacional o volátil.
 
@@ -519,7 +518,7 @@ Ocurrencia (O): 6. Dado que el tráfico de usuarios puede ser estacional o volá
 \centering
 \begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
-Riesgo & S & O & RPN & S* & O* & RPN* \\
+\rowcolor[HTML]{C0C0C0} Riesgo& S & O & RPN & S* & O* & RPN* \\
 \hline
 1. Recursos en AWS & 8 & 6 & 48 & 6 & 4 & 24 \\\hline
 2. Calidad de datos & 7 & 5 & 35 & 6 & 4 & 24 \\\hline
@@ -565,7 +564,7 @@ En la siguiente tabla se detallan diez requerimientos clave del proyecto, selecc
 \centering
 \begin{tabular}{|p{4cm}|p{5cm}|p{5cm}|}
 \hline
-\textbf{Requerimiento} & \textbf{Verificación (caja blanca)} & \textbf{Validación (caja negra)} \\
+\rowcolor[HTML]{C0C0C0} \textbf{Requerimiento}& \textbf{Verificación (caja blanca)} & \textbf{Validación (caja negra)} \\
 \hline
 1. El sistema debe detectar anomalías con datos multivariados & Evaluación de reconstrucción vs señal original usando error cuadrático medio (MSE) & Revisión funcional con el equipo de soporte sobre detecciones correctas e incorrectas\\
 \hline
@@ -577,15 +576,15 @@ En la siguiente tabla se detallan diez requerimientos clave del proyecto, selecc
 \hline
 5. Generación automática de enlaces hacia dashboards en Grafana & Verificación del formato correcto de URLs generadas dinámicamente & Acceso correcto y funcional desde la alerta hasta el dashboard relevante \\
 \hline
-6. Documentación técnica del modelo entrenado & Revisión de estructura técnica completa (modelo, inputs, outputs)& Validación por el equipo de infraestructura\\
+6. Documentación técnica del modelo entrenado & Revisión de estructura técnica completa (modelo, inputs y outputs)& Validación por el equipo de infraestructura\\
 \hline
 7. Manual de usuario final para configuración del sistema & Revisión ortográfica y técnica& Validación con usuario final mediante prueba de instalación paso a paso \\
 \hline
-8. El sistema debe soportar nuevas métricas sin reentrenamiento completo & Prueba modular de inputs y vuelta a valores por defecto& Simulación de nuevas métricas por parte del equipo de monitoreo para validar robustez \\
+8. El sistema debe soportar nuevas métricas sin re-entrenamiento completo& Prueba modular de inputs y vuelta a valores por defecto& Simulación de nuevas métricas por parte del equipo de monitoreo para validar robustez \\
 \hline
 9. Interoperabilidad con Prometheus como fuente de métricas & Testeo de conexión y recopilación de métricas a intervalos regulares& Verificación del flujo de datos en tiempo real dentro del dashboard de Grafana \\
 \hline
-10. El sistema debe ejecutarse como un servicio en segundo plano & Pruebas funcionales y logs operativos bajo supervisión& Validación por el equipo de infraestructura en entorno de producción \\
+10. El sistema debe ejecutarse como un servicio en segundo plano & Generación de pruebas funcionales y logs de operación del pipeline& Validación por el equipo de infraestructura en entorno de producción \\
 \hline
 \end{tabular}
 \caption{Gestión de calidad: verificación y validación de los principales requerimientos.}
@@ -599,14 +598,11 @@ En la siguiente tabla se detallan diez requerimientos clave del proyecto, selecc
 Una vez completadas todas las actividades planificadas en el proyecto, se llevará a cabo una reunión final de evaluación con el objetivo de formalizar su cierre. A continuación, se detallan las pautas de trabajo que guiarán dicho proceso:
 
 \begin{itemize}
-    \item Evaluación del cumplimiento del Plan de Proyecto\textbf{:}  
-    La revisión del cumplimiento del plan original estará a cargo del lider técnico del equipo de soporte de la empresa. El procedimiento consistirá en contrastar el cronograma y el WBS definidos en las etapas iniciales con las tareas efectivamente ejecutadas, verificando desviaciones en duración, entregables y prioridades. Se utilizarán las versiones documentadas en Git o carpetas compartidas como evidencia del seguimiento.
+    \item Evaluación del cumplimiento del Plan de Proyecto\textbf{:}  la revisión del cumplimiento del plan original estará a cargo del lider técnico del equipo de soporte de la empresa. El procedimiento consistirá en contrastar el cronograma y el WBS definidos en las etapas iniciales con las tareas efectivamente ejecutadas, verificando desviaciones en duración, entregables y prioridades. Se utilizarán las versiones documentadas en Git o carpetas compartidas como evidencia del seguimiento.
 
-    \item Análisis de técnicas, problemas y soluciones\textbf{:}  
-    Se realizará una revisión retrospectiva sobre las técnicas empleadas, diferenciando aquellas que fueron eficaces (como el uso de Autoencoders LSTM para detección multivariada) de aquellas que resultaron inadecuadas o descartadas de otros modelos. También se documentarán los problemas surgidos (por ejemplo, calidad de datos, disponibilidad de infraestructura en la nube) y las estrategias aplicadas para resolverlos. Todo este análisis será consolidado y documentado pertinentemente.
+    \item Análisis de técnicas, problemas y soluciones\textbf{:}  se realizará una revisión retrospectiva sobre las técnicas empleadas, diferenciando aquellas que fueron eficaces (como el uso de Autoencoders LSTM para detección multivariada) de aquellas que resultaron inadecuadas o descartadas de otros modelos. También se documentarán los problemas surgidos (por ejemplo, calidad de datos o disponibilidad de infraestructura en la nube) y las estrategias aplicadas para resolverlos. Todo este análisis será consolidado y documentado pertinentemente.
 
-    \item Acto de cierre y agradecimiento\textbf{:}  
-    El acto de cierre será organizado por el autor del proyecto, quien se encargará de invitar y agradecer especialmente al equipo de operaciones, al personal técnico que colaboró en las etapas de validación, y a la empresa por su apoyo institucional. En caso de realizarse un pequeño evento informal o encuentro virtual, los gastos serán cubiertos personalmente por el responsable del proyecto, sin requerir financiamiento institucional adicional.
+    \item Acto de cierre y agradecimiento\textbf{:}  el acto de cierre será organizado por el autor del proyecto, quien se encargará de invitar y agradecer especialmente al equipo de operaciones, al personal técnico que colaboró en las etapas de validación y a la empresa por su apoyo institucional. En caso de realizarse un pequeño evento informal o encuentro virtual, los gastos serán cubiertos personalmente por el responsable del proyecto, sin requerir financiamiento institucional adicional.
 \end{itemize}
 
 Estas acciones permitirán formalizar el cierre técnico y administrativo del proyecto, dejando trazabilidad de su cumplimiento, reconociendo a los colaboradores y consolidando el conocimiento generado.
